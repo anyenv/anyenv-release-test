@@ -52,9 +52,11 @@ jobs:
     steps:
       - run: |
           set -xe
+          git config --global user.name "${GITHUB_ACTOR}"
+          git config --global user.email "${GITHUB_ACTOR}@users.noreply.github.com"
           tag=${{ needs.publish_release.outputs.tag }}
           tag=v1.1.5
-          brew bump-formula-pr --url https://github.com/anyenv/anyenv/archive/${tag}.tar.gz --fork-org anyenv --no-browse -d -v
+          brew bump-formula-pr --url https://github.com/anyenv/anyenv/archive/${tag}.tar.gz --fork-org anyenv --no-browse -d -v --write-only --commit
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}
   
