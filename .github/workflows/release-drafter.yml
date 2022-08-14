@@ -57,6 +57,7 @@ jobs:
           tag=${{ needs.publish_release.outputs.tag }}
           tag=v1.1.5
           brew bump-formula-pr --url https://github.com/anyenv/anyenv/archive/${tag}.tar.gz --fork-org anyenv --no-browse --force -d -v --write-only --commit
+          git log
         env:
           HOMEBREW_GITHUB_API_TOKEN: ${{ secrets.HOMEBREW_TOKEN }}
   
